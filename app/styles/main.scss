@@ -1,0 +1,70 @@
+/* VARS */
+
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+$main-font: 'Helvetica Neue', 'Helvetica', sans-serif;
+$title-font: 'Garamond', serif;
+$main-color: #ff9000;
+$bg-color: darkgreen;
+$error-color: red;
+$ok-color: blue;
+
+
+html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+/* TAGS */
+
+a { text-decoration: none; }
+a:hover, i:hover { color: #000; text-decoration: none; }
+body { background: lightgreen; font-family: $main-font; font-size: 18px; margin: 0; }
+h1 { color: $main-color; font-size: 30px; }
+header { background: $bg-color;border-bottom: 1px solid orange; font-family: $title-font; height: 40px; position: absolute; top: 0; width: 100%; }
+header h1 { line-height: 40px; margin: 0; text-align: center; }
+i { display: block !important; font-size: 32px; margin: 7px auto 2px; }
+nav { bottom: 0; position: absolute; width: 100%; z-index: 100; }
+nav li { background: $bg-color; border-left: 1px solid white; float: left; height: 64px; margin: 0; text-align: center; width: 22%; }
+nav li:first-child { border-left: none; }
+nav li a { color: white; font-size: 11px; }
+nav li:hover { background: green; }
+nav li:hover a, nav li:hover i { color: white; text-decoration: none !important; }
+nav li:nth-child(2), nav li:nth-child(3) { width: 28%; }
+nav li:nth-child(2) a { left: -10px; position: relative; }
+nav li:nth-child(3) a { left: 10px; position: relative; }
+section { padding: 60px 20px; }
+ul, li { list-style: none; padding: 0; }
+
+
+
+/* CLASSES */
+
+.active { display: block !important; top: 0; z-index: 100; }
+.container { }
+.loading { margin: 48% auto; text-align: center; width: 100%; }
+
+
+
+/* IDS */
+
+#map-canvas { height: 90%; width: 100%; }
+#logo { background: url('../images/logo.png') 0 0 no-repeat; bottom: 0; display: block; float: left; height: 74px; left: 50%; margin-left: -39px; position: absolute; width: 78px; }
+#background, #panorama, #mapa, #busca, #ajustes { display: none; height: 100%; left: 0; position: absolute; top: 100%; width: 100%; }
+#background { display: block !important; top: 0; z-index: 99; }
+#background section { background: lightgreen; height: 100%; }
+#panorama section { background: yellow; height: 100%; }
+#panorama section div { display: block; float: left; margin-left: 5%; width: 25%; }
+#panorama section label { display: block; float: left; text-align: right; width: 70%; }
+#mapa section { background: red; height: 100%; }
+#busca section { background: purple; height: 100%; }
+#ajustes section { background: green; height: 100%; }
+
+
+
+/* SPRITE */
+
+
+
+
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }

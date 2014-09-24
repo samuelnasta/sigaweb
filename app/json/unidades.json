@@ -1,0 +1,103 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Praça Floriano Peixoto",
+        "id": "Boulevard"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.919734954833984,
+          -19.923003854287483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Parque Municipal",
+        "id": "Centro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.93458366394043,
+          -19.923568710166546
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Parque das Gameleiras",
+        "id": "Ipiranga"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.906495571136475,
+          -19.95027601878427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Praça da Liberdade",
+        "id": "Sao Jose"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.93803834915161,
+          -19.93212199532181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Praça Raul Soares",
+        "id": "Sao Joao"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.945162296295166,
+          -19.922781946068483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Lagoa do Nado",
+        "id": "Vale Dourado"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.958981037139885,
+          -19.835749774008196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Parque Ecológico",
+        "id": "Esmeralda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.996853828430176,
+          -19.857103615045354
+        ]
+      }
+    }
+  ]
+}

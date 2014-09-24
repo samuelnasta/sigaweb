@@ -1,0 +1,11 @@
+{
+	"Usuarios": "15",
+	"Logados": "1",
+	"Atendimentos": "1000",
+	"Aguardando": "900",
+	"Espera": "02:00:00",
+	"Aguardando_15min": "700",
+	"Aguardando_30min": "150",
+	"Aguardando_60min": "50",
+	"Cancelamentos": "80"
+}
