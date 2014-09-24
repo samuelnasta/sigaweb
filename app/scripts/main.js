@@ -190,7 +190,7 @@ $(document).ready(function() {
 
 	/* Auto complete */
 	$('#campo-busca').unbind('blur');
-	$.getJSON('json/list.json', function(json) {
+	$.getJSON('json/lista.json', function(json) {
 		$('#campo-busca').autocomplete({
 		    lookup: json,
 		    fillin: true,
