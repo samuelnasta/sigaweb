@@ -7,14 +7,35 @@ http://geojson.io/
 */
 
 
-/* Variáveis para o Google Maps */
+/* Variáveis para Google Maps */
 var google, infoWindow = null, latLng, map, marker;
+/* Variáveis para Auto refresh */
+var ajustesAutoRefresh, ajustesMaxTempo, menuAutoRefresh = null, timeoutAutoRefresh;
+
+
+
+/* Auto refresh JSON */
+window.autoRefresh = function() {
+	ajustesAutoRefresh = (localStorage.ajustesAutoRefresh) ? localStorage.ajustesAutoRefresh : 1;
+	window.clearTimeout(timeoutAutoRefresh);
+	if(menuAutoRefresh === 'panorama' || menuAutoRefresh === 'unidade') {
+		timeoutAutoRefresh = window.setTimeout(function() {
+			if(menuAutoRefresh === 'panorama') {
+				window.refreshDashboard();
+			} else if (menuAutoRefresh === 'unidade') {
+				window.refreshUnit(window.unit);
+			}
+			window.autoRefresh();
+		}, ajustesAutoRefresh * 1000 * 60);
+	}
+};
 
 
 
 /* Média de tempo de espera. Se for maior aplica classe de underperformance */
 window.averageTime = function(time, attendance, div) {
-	var ajustesMaxTempo = (localStorage.ajustesMaxTempo) ? localStorage.ajustesMaxTempo : 5;
+	ajustesMaxTempo = (localStorage.ajustesMaxTempo) ? localStorage.ajustesMaxTempo : 5;
+	div.addClass('underperforming');
 	var partialTime = window.toSeconds(time) / attendance;
 	if(partialTime > ajustesMaxTempo * 60) {
 		div.addClass('underperforming');
@@ -76,7 +97,6 @@ window.loadMarkers = function() {
             google.maps.event.addListener(marker, 'click', window.infoWindowCallback);
 		}
 	});
-
 };
 
 
@@ -89,30 +109,51 @@ window.menuSlide = function(menu) {
 			$('#' + menu).addClass('active').animate({'top': '0'}, 500);
 			$('[role=section]:not(.active)').animate({'top': '100%'}, 0);
 		});
+
+		window.menuAutoRefresh = menu;
+		window.autoRefresh();
+	});
+};
+
+
+
+/* Mostra o panorama dos atendimentos naquele momento */
+window.refreshDashboard = function() {
+	$.getJSON('json/atendimentos.json', function(json) {
+		$('#atendimentos').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Atendimentos);
+		$('#cancelamentos').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Cancelamentos);
+		$('#espera').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Espera);
+		$('#media-espera').fadeTo(100, 0.3).fadeTo(250, 1).html(window.averageTime(json.Espera, json.Atendimentos, $('#media-espera')));
+	});
+};
+
+
+
+/* Mostra os dados de determinada unidade */
+window.refreshUnit = function(unit) {
+	$.getJSON('json/' + unit + '.json', function(json) {
+		$('#unidade-atendimentos').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Atendimentos);
+		$('#unidade-cancelamentos').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Cancelamentos);
+		$('#unidade-espera').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Espera);
+		$('#unidade-media-espera').fadeTo(100, 0.3).fadeTo(250, 1).html(window.averageTime(json.Espera, json.Atendimentos, $('#unidade-media-espera')));
+
+		$('#unidade-usuarios').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Usuarios);
+		$('#unidade-logados').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Logados);
+
+		$('#unidade-aguardando').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Aguardando);
+		$('#unidade-aguardando-15min').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Aguardando15min);
+		$('#unidade-aguardando-30min').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Aguardando30min);
+		$('#unidade-aguardando-60min').fadeTo(100, 0.3).fadeTo(250, 1).html(json.Aguardando60min);
 	});
 };
 
 
 
 window.showCompanyUnit = function(name, unit) {
+	window.unit = unit;
 	$('#unidade').animate({'left': '100%'}, 0).animate({'left': '0%'}, 300).addClass('active');
 	$('#nome-unidade').text(name);
-	
-	$.getJSON('json/' + unit + '.json', function(json) {
-		$('#unidade-atendimentos').html(json.Atendimentos);
-		$('#unidade-cancelamentos').html(json.Cancelamentos);
-		$('#unidade-espera').html(json.Espera);
-		$('#unidade-media-espera').html(window.averageTime(json.Espera, json.Atendimentos, $('#unidade-media-espera')));
-
-		$('#unidade-usuarios').html(json.Usuarios);
-		$('#unidade-logados').html(json.Logados);
-
-		$('#unidade-aguardando').html(json.Aguardando);
-		$('#unidade-aguardando-15min').html(json.Aguardando15min);
-		$('#unidade-aguardando-30min').html(json.Aguardando30min);
-		$('#unidade-aguardando-60min').html(json.Aguardando60min);
-
-	});
+	window.refreshUnit(unit);
 };
 
 
@@ -155,11 +196,16 @@ $(document).ready(function() {
 	window.menuSlide('mapa');
 	window.menuSlide('busca');
 	window.menuSlide('ajustes');
-	$('#panorama').animate({'top': '0'}, 500);
+	$('#menu-panorama').click();
+
+	window.refreshDashboard();
 
 
-	/* Define ajustes de underperformance */
-	if(localStorage && localStorage.ajustesMaxTempo){
+
+
+
+	/* Define ajustes */
+	if(localStorage.ajustesMaxTempo){
 		$('#ajustes-max-tempo').val(localStorage.ajustesMaxTempo);
 	}
 	$('#ajustes-max-tempo').on('change', function() {
@@ -167,14 +213,14 @@ $(document).ready(function() {
 	});
 
 
-
-	/* Mostra o panorama dos atendimentos naquele momento */
-	$.getJSON('json/atendimentos.json', function(json) {
-		$('#atendimentos').html(json.Atendimentos);
-		$('#cancelamentos').html(json.Cancelamentos);
-		$('#espera').html(json.Espera);
-		$('#media-espera').html(window.averageTime(json.Espera, json.Atendimentos, $('#media-espera')));
+	if(localStorage.ajustesAutoRefresh){
+		$('#ajustes-auto-refresh').val(localStorage.ajustesAutoRefresh);
+	}
+	$('#ajustes-auto-refresh').on('change', function() {
+		localStorage.ajustesAutoRefresh = $('#ajustes-auto-refresh').val();
 	});
+
+
 
 
 
@@ -201,6 +247,9 @@ $(document).ready(function() {
 	/* Mostra a tela de Ver unidade quando clica no link do marcador */
 	$('#map-canvas').on('click', '.ver-unidade', function() {
 		window.showCompanyUnit($(this).attr('data-nome'), $(this).attr('data-unidade'));
+		window.unit = $(this).attr('data-unidade');
+		window.menuAutoRefresh = 'unidade';
+		window.autoRefresh();
 	});
 
 
@@ -208,11 +257,10 @@ $(document).ready(function() {
 	$('#voltar-mapa').on('click', function() {
 		$('#unidade').animate({'left': '100%'}, 300, function() { $(this).removeClass('active'); });
 		$('#campo-busca').select();
+		window.clearTimeout(timeoutAutoRefresh);
 	});
 
-	/* Auto refresh JSON */
 
-	
 
 
 
@@ -229,6 +277,8 @@ $(document).ready(function() {
 			    onSelect: function (suggestion) {
 					//console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
 			        window.showCompanyUnit(suggestion.value, suggestion.data);
+					window.menuAutoRefresh = 'unidade';
+					window.autoRefresh();
 			    }
 			});
 		});
