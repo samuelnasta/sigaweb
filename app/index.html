@@ -4,17 +4,12 @@
 <title>SigaWeb Mobile</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<!-- build:css styles/vendor.css -->
-<!-- bower:css -->
-<!-- endbower -->
-<!-- endbuild -->
 <!-- build:css(.tmp) styles/main.css -->
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 <link href="styles/main.css" rel="stylesheet">
 <!-- endbuild -->
-<script src="bower_components/modernizr/modernizr.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5kPN48RXW7LMnkcHflvbNJbPe-haCpJs"></script>
+<!-- <script src="bower_components/modernizr/modernizr.js"></script> -->
+<script src="bower_components/devbridge-autocomplete/dist/jquery.autocomplete.js"></script>
 </head>
 <body>
 
@@ -56,6 +51,27 @@
 		</section>
 	</div>
 
+	<div id="unidade" role="section">
+		<header>
+			<a href="javascript:;" id="voltar-mapa">&lt; Voltar</a>
+			<h1 id="nome-unidade">Ver unidade</h1>
+		</header>
+		<section>
+			<label>Atendimentos Realizados:</label> <div id="unidade-atendimentos"></div>
+			<label>Senhas Canceladas:</label> <div id="unidade-cancelamentos"></div>
+			<label>Espera Total:</label> <div id="unidade-espera"></div>
+			<label>Tempo Médio de Espera:</label> <div id="unidade-media-espera"></div>
+			<hr class="clearfix">
+			<label>Usuários:</label> <div id="unidade-usuarios"></div>
+			<label>Usuários logados:</label> <div id="unidade-logados"></div>
+			<hr class="clearfix">
+			<label>Total aguardando:</label> <div id="unidade-aguardando"></div>
+			<label>Aguardando até 15minutos:</label> <div id="unidade-aguardando-15min"></div>
+			<label>Aguardando até 30minutos:</label> <div id="unidade-aguardando-30min"></div>
+			<label>Aguardando há mais de 30minutos:</label> <div id="unidade-aguardando-60min"></div>
+		</section>
+	</div>
+
 	<div id="ajustes" role="section">
 		<header>
 			<h1>Ajustes</h1>
@@ -85,6 +101,7 @@
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/jquery.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5kPN48RXW7LMnkcHflvbNJbPe-haCpJs"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

@@ -4,8 +4,8 @@
 	"Atendimentos": "500",
 	"Aguardando": "500",
 	"Espera": "01:00:00",
-	"Aguardando_15min": "500",
-	"Aguardando_30min": "0",
-	"Aguardando_60min": "0",
+	"Aguardando15min": "500",
+	"Aguardando30min": "0",
+	"Aguardando60min": "0",
 	"Cancelamentos": "0"
 }

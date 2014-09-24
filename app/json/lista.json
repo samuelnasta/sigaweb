@@ -1,18 +1,24 @@
 [
 	{
 		"unidade": "Boulevard",
-		"id": "1"
+		"id": "Praça Floriano Peixoto"
 	}, {
 		"unidade": "Centro",
-		"id": "2"
+		"id": "Parque Municipal"
+	}, {
+		"unidade": "Esmeralda",
+		"id": "Parque Ecológico"
 	}, {
 		"unidade": "Ipiranga",
-		"id": "3"
+		"id": "Parque das Gameleiras"
 	}, {
 		"unidade": "São João",
-		"id": "4"
+		"id": "Praça Raul Soares"
 	}, {
 		"unidade": "São José",
-		"id": "5"
+		"id": "Praça da Liberdade"
+	}, {
+		"unidade": "Vale Dourado",
+		"id": "Lagoa do Nado"
 	}
 ]

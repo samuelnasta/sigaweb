@@ -4,8 +4,8 @@
 	"Atendimentos": "90",
 	"Aguardando": "20",
 	"Espera": "00:30:00",
-	"Aguardando_15min": "10",
-	"Aguardando_30min": "6",
-	"Aguardando_60min": "4",
+	"Aguardando15min": "10",
+	"Aguardando30min": "6",
+	"Aguardando60min": "4",
 	"Cancelamentos": "1"
 }

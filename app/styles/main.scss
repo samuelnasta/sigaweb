@@ -16,9 +16,11 @@ html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: 
 a { text-decoration: none; }
 a:hover, i:hover { color: #000; text-decoration: none; }
 body { background: lightgreen; font-family: $main-font; font-size: 18px; margin: 0; }
-h1 { color: $main-color; font-size: 30px; }
+h1, #voltar-mapa { color: $main-color; font-size: 24px; }
 header { background: $bg-color;border-bottom: 1px solid orange; font-family: $title-font; height: 40px; position: absolute; top: 0; width: 100%; }
-header h1 { line-height: 40px; margin: 0; text-align: center; }
+header h1, #voltar-mapa { height: 40px; line-height: 40px; text-align: center; }
+header h1 { margin: 0 15%; overflow: hidden; width: 70%; }
+hr { clear: both; margin: 0; }
 i { display: block !important; font-size: 32px; margin: 7px auto 2px; }
 nav { bottom: 0; position: absolute; width: 100%; z-index: 100; }
 nav li { background: $bg-color; border-left: 1px solid white; float: left; height: 64px; margin: 0; text-align: center; width: 22%; }
@@ -46,15 +48,22 @@ ul, li { list-style: none; padding: 0; }
 
 #map-canvas { height: 90%; width: 100%; }
 #logo { background: url('../images/logo.png') 0 0 no-repeat; bottom: 0; display: block; float: left; height: 74px; left: 50%; margin-left: -39px; position: absolute; width: 78px; }
-#background, #panorama, #mapa, #busca, #ajustes { display: none; height: 100%; left: 0; position: absolute; top: 100%; width: 100%; }
+#background, #panorama, #mapa, #unidade, #busca, #ajustes { display: none; height: 100%; left: 0; position: absolute; top: 100%; width: 100%; }
+#ajustes section { background: green; height: 100%; }
+/*
 #background { display: block !important; top: 0; z-index: 99; }
 #background section { background: lightgreen; height: 100%; }
-#panorama section { background: yellow; height: 100%; }
-#panorama section div { display: block; float: left; margin-left: 5%; width: 25%; }
-#panorama section label { display: block; float: left; text-align: right; width: 70%; }
-#mapa section { background: red; height: 100%; }
+*/
 #busca section { background: purple; height: 100%; }
-#ajustes section { background: green; height: 100%; }
+#mapa section { background: red; height: 100%; }
+#panorama section { background: yellow; height: 100%; }
+#panorama section div, #unidade section div { display: block; float: left; margin-left: 5%; width: 25%; }
+#panorama section label, #unidade section label { display: block; float: left; text-align: right; width: 70%; }
+#unidade { left: 100%; top: 0% !important; }
+#unidade section { background: orange; height: 100%; }
+#voltar-mapa { float: left; font-size: 18px; left: 0; letter-spacing: -0.5px; position: absolute; }
+
+
 
 
 

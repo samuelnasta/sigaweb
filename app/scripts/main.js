@@ -21,7 +21,7 @@ window.averageTime = function(time, attendance) {
 
 /* Gera link quando o usuário clica no marcador */
 window.infoWindowCallback = function() {
-	infoWindow.setContent('<a class="ver-unidade" href="javascript:;" data-unidade="' + this.id + '">' + this.title + '</a>');
+	infoWindow.setContent('<a class="ver-unidade" href="javascript:;" data-nome="' + this.title + '" data-unidade="' + this.id + '">' + this.title + '</a>');
 	infoWindow.open(map, this);
 };
 
@@ -68,9 +68,7 @@ window.loadMarkers = function() {
 				title: title
 			});
 
-
             google.maps.event.addListener(marker, 'click', window.infoWindowCallback);
-
 		}
 	});
 
@@ -142,7 +140,7 @@ $(document).ready(function() {
 	Se ele for iniciado quando a página carrega, os mapas são mostrados faltando pedaços */
 	$('#menu-mapa').on('click', function() {
 		window.setTimeout(function() {
-			/* Centraliza o mapa onde o usuário está. Se não permitir, centraliza em Belo Horizonte */
+			/* Centraliza o mapa onde o usuário está. Se ele não permitir esse recurso, centraliza em Belo Horizonte */
 			if(!navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(window.initializeMap);
 			} else {
@@ -154,7 +152,29 @@ $(document).ready(function() {
 
 	/* Mostra a tela de Ver unidade quando clica no link do marcador */
 	$('#map-canvas').on('click', '.ver-unidade', function() {
-		window.alert('s');
+		$('#unidade').animate({'left': '100%'}, 0).animate({'left': '0%'}, 300).addClass('active');
+		$('#nome-unidade').text($(this).attr('data-nome'));
+		
+		$.getJSON('json/' + $(this).attr('data-unidade') + '.json', function(json) {
+			$('#unidade-atendimentos').html(json.Atendimentos);
+			$('#unidade-cancelamentos').html(json.Cancelamentos);
+			$('#unidade-espera').html(json.Espera);
+			$('#unidade-media-espera').html(window.averageTime(json.Espera, json.Atendimentos));
+
+			$('#unidade-usuarios').html(json.Usuarios);
+			$('#unidade-logados').html(json.Logados);
+
+			$('#unidade-aguardando').html(json.Aguardando);
+			$('#unidade-aguardando-15min').html(json.Aguardando15min);
+			$('#unidade-aguardando-30min').html(json.Aguardando30min);
+			$('#unidade-aguardando-60min').html(json.Aguardando60min);
+
+		});
+	});
+
+
+	$('#voltar-mapa').on('click', function() {
+		$('#unidade').animate({'left': '100%'}, 300, function() { $(this).removeClass('active'); });
 	});
 
 });
