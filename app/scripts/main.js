@@ -12,9 +12,14 @@ var google, infoWindow = null, latLng, map, marker;
 
 
 
-/* Média de tempo de espera */
-window.averageTime = function(time, attendance) {
-	return window.toTime(window.toSeconds(time) / attendance);
+/* Média de tempo de espera. Se for maior aplica classe de underperformance */
+window.averageTime = function(time, attendance, div) {
+	var ajustesMaxTempo = (localStorage.ajustesMaxTempo) ? localStorage.ajustesMaxTempo : 5;
+	var partialTime = window.toSeconds(time) / attendance;
+	if(partialTime > ajustesMaxTempo * 60) {
+		div.addClass('underperforming');
+	}
+	return window.toTime(partialTime);
 };
 
 
@@ -97,7 +102,7 @@ window.showCompanyUnit = function(name, unit) {
 		$('#unidade-atendimentos').html(json.Atendimentos);
 		$('#unidade-cancelamentos').html(json.Cancelamentos);
 		$('#unidade-espera').html(json.Espera);
-		$('#unidade-media-espera').html(window.averageTime(json.Espera, json.Atendimentos));
+		$('#unidade-media-espera').html(window.averageTime(json.Espera, json.Atendimentos, $('#unidade-media-espera')));
 
 		$('#unidade-usuarios').html(json.Usuarios);
 		$('#unidade-logados').html(json.Logados);
@@ -155,19 +160,24 @@ $(document).ready(function() {
 		$('#atendimentos').html(json.Atendimentos);
 		$('#cancelamentos').html(json.Cancelamentos);
 		$('#espera').html(json.Espera);
-		$('#media-espera').html(window.averageTime(json.Espera, json.Atendimentos));
+		$('#media-espera').html(window.averageTime(json.Espera, json.Atendimentos, $('#media-espera')));
 	});
 
 
 	/* Inicializa o Google Maps quando o usuário clica em Mapas.
 	Se ele for iniciado quando a página carrega, os mapas são mostrados faltando pedaços */
+	var flagMap = false;
 	$('#menu-mapa').on('click', function() {
 		window.setTimeout(function() {
 			/* Centraliza o mapa onde o usuário está. Se ele não permitir esse recurso, centraliza em Belo Horizonte */
-			if(!navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(window.initializeMap);
-			} else {
-				window.initializeMap();
+			/* Verifica se o mapa já foi inicializado para evitar ter que carregá-lo sempre */
+			if(!flagMap){
+				if(!navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(window.initializeMap);
+				} else {
+					window.initializeMap();
+				}
+				flagMap = true;
 			}
 		}, 1000);
 	});
@@ -184,8 +194,16 @@ $(document).ready(function() {
 		$('#campo-busca').select();
 	});
 
+	/* Auto refresh JSON */
 
-
+	
+	/* Definir underperformance */
+	if(localStorage && localStorage.ajustesMaxTempo){
+		$('#ajustes-max-tempo').val(localStorage.ajustesMaxTempo);
+	}
+	$('#ajustes-max-tempo').on('change', function() {
+		localStorage.ajustesMaxTempo = $('#ajustes-max-tempo').val();
+	});
 
 
 	/* Auto complete */
@@ -193,6 +211,7 @@ $(document).ready(function() {
 		window.setTimeout(function() {
 			$('#campo-busca').focus();
 		}, 1000);
+		
 		$.getJSON('json/lista.json', function(json) {
 			$('#campo-busca').autocomplete({
 			    lookup: json,
@@ -205,5 +224,5 @@ $(document).ready(function() {
 		});
 	});
 	
-
+	$('#campo-busca').click(function(){ return false; });
 });
