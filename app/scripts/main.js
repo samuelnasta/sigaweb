@@ -89,6 +89,29 @@ window.menuSlide = function(menu) {
 
 
 
+window.showCompanyUnit = function(name, unit) {
+	$('#unidade').animate({'left': '100%'}, 0).animate({'left': '0%'}, 300).addClass('active');
+	$('#nome-unidade').text(name);
+	
+	$.getJSON('json/' + unit + '.json', function(json) {
+		$('#unidade-atendimentos').html(json.Atendimentos);
+		$('#unidade-cancelamentos').html(json.Cancelamentos);
+		$('#unidade-espera').html(json.Espera);
+		$('#unidade-media-espera').html(window.averageTime(json.Espera, json.Atendimentos));
+
+		$('#unidade-usuarios').html(json.Usuarios);
+		$('#unidade-logados').html(json.Logados);
+
+		$('#unidade-aguardando').html(json.Aguardando);
+		$('#unidade-aguardando-15min').html(json.Aguardando15min);
+		$('#unidade-aguardando-30min').html(json.Aguardando30min);
+		$('#unidade-aguardando-60min').html(json.Aguardando60min);
+
+	});
+};
+
+
+
 /* Conta quantos segundos existe em determinada hora */
 window.toSeconds = function(time) {
 	var partialTime, finalTime;
@@ -152,29 +175,31 @@ $(document).ready(function() {
 
 	/* Mostra a tela de Ver unidade quando clica no link do marcador */
 	$('#map-canvas').on('click', '.ver-unidade', function() {
-		$('#unidade').animate({'left': '100%'}, 0).animate({'left': '0%'}, 300).addClass('active');
-		$('#nome-unidade').text($(this).attr('data-nome'));
-		
-		$.getJSON('json/' + $(this).attr('data-unidade') + '.json', function(json) {
-			$('#unidade-atendimentos').html(json.Atendimentos);
-			$('#unidade-cancelamentos').html(json.Cancelamentos);
-			$('#unidade-espera').html(json.Espera);
-			$('#unidade-media-espera').html(window.averageTime(json.Espera, json.Atendimentos));
-
-			$('#unidade-usuarios').html(json.Usuarios);
-			$('#unidade-logados').html(json.Logados);
-
-			$('#unidade-aguardando').html(json.Aguardando);
-			$('#unidade-aguardando-15min').html(json.Aguardando15min);
-			$('#unidade-aguardando-30min').html(json.Aguardando30min);
-			$('#unidade-aguardando-60min').html(json.Aguardando60min);
-
-		});
+		window.showCompanyUnit($(this).attr('data-nome'), $(this).attr('data-unidade'));
 	});
 
 
 	$('#voltar-mapa').on('click', function() {
 		$('#unidade').animate({'left': '100%'}, 300, function() { $(this).removeClass('active'); });
+		$('#campo-busca').select();
 	});
+
+
+
+
+
+	/* Auto complete */
+	$('#campo-busca').unbind('blur');
+	$.getJSON('json/list.json', function(json) {
+		$('#campo-busca').autocomplete({
+		    lookup: json,
+		    fillin: true,
+		    onSelect: function (suggestion) {
+		        console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+		        window.showCompanyUnit(suggestion.value, suggestion.data);
+		    }
+		});
+	});
+	
 
 });

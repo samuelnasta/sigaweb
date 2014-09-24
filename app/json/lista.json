@@ -1,24 +1,24 @@
 [
 	{
-		"unidade": "Boulevard",
-		"id": "Praça Floriano Peixoto"
+		"value": "Lagoa do Nado",
+		"data": "Vale Dourado"
 	}, {
-		"unidade": "Centro",
-		"id": "Parque Municipal"
+		"value": "Parque Ecológico",
+		"data": "Esmeralda"
 	}, {
-		"unidade": "Esmeralda",
-		"id": "Parque Ecológico"
+		"value": "Parque das Gameleiras",
+		"data": "Ipiranga"
 	}, {
-		"unidade": "Ipiranga",
-		"id": "Parque das Gameleiras"
+		"value": "Parque Municipal",
+		"data": "Centro"
 	}, {
-		"unidade": "São João",
-		"id": "Praça Raul Soares"
+		"value": "Praça da Liberdade",
+		"data": "Sao Jose"
 	}, {
-		"unidade": "São José",
-		"id": "Praça da Liberdade"
+		"value": "Praça Floriano Peixoto",
+		"data": "Boulevard"
 	}, {
-		"unidade": "Vale Dourado",
-		"id": "Lagoa do Nado"
+		"value": "Praça Raul Soares",
+		"data": "Sao Joao"
 	}
 ]

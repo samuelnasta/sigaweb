@@ -46,15 +46,12 @@ ul, li { list-style: none; padding: 0; }
 
 /* IDS */
 
-#map-canvas { height: 90%; width: 100%; }
-#logo { background: url('../images/logo.png') 0 0 no-repeat; bottom: 0; display: block; float: left; height: 74px; left: 50%; margin-left: -39px; position: absolute; width: 78px; }
 #background, #panorama, #mapa, #unidade, #busca, #ajustes { display: none; height: 100%; left: 0; position: absolute; top: 100%; width: 100%; }
 #ajustes section { background: green; height: 100%; }
-/*
-#background { display: block !important; top: 0; z-index: 99; }
-#background section { background: lightgreen; height: 100%; }
-*/
 #busca section { background: purple; height: 100%; }
+#campo-busca { width: 100%; }
+#logo { background: url('../images/logo.png') 0 0 no-repeat; bottom: 0; display: block; float: left; height: 74px; left: 50%; margin-left: -39px; position: absolute; width: 78px; }
+#map-canvas { height: 90%; width: 100%; }
 #mapa section { background: red; height: 100%; }
 #panorama section { background: yellow; height: 100%; }
 #panorama section div, #unidade section div { display: block; float: left; margin-left: 5%; width: 25%; }
@@ -73,7 +70,10 @@ ul, li { list-style: none; padding: 0; }
 
 
 
+
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
 .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
 .autocomplete-selected { background: #F0F0F0; }
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
