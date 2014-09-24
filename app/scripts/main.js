@@ -189,15 +189,19 @@ $(document).ready(function() {
 
 
 	/* Auto complete */
-	$('#campo-busca').unbind('blur');
-	$.getJSON('json/lista.json', function(json) {
-		$('#campo-busca').autocomplete({
-		    lookup: json,
-		    fillin: true,
-		    onSelect: function (suggestion) {
-		        console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
-		        window.showCompanyUnit(suggestion.value, suggestion.data);
-		    }
+	$('#menu-busca').on('click', function() {
+		window.setTimeout(function() {
+			$('#campo-busca').focus();
+		}, 1000);
+		$.getJSON('json/lista.json', function(json) {
+			$('#campo-busca').autocomplete({
+			    lookup: json,
+			    minChars: 0,
+			    onSelect: function (suggestion) {
+			        console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+			        window.showCompanyUnit(suggestion.value, suggestion.data);
+			    }
+			});
 		});
 	});
 	
