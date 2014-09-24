@@ -147,12 +147,25 @@ window.toTime = function(time) {
 
 
 
+
+
+
 $(document).ready(function() {
 	window.menuSlide('panorama');
 	window.menuSlide('mapa');
 	window.menuSlide('busca');
 	window.menuSlide('ajustes');
 	$('#panorama').animate({'top': '0'}, 500);
+
+
+	/* Define ajustes de underperformance */
+	if(localStorage && localStorage.ajustesMaxTempo){
+		$('#ajustes-max-tempo').val(localStorage.ajustesMaxTempo);
+	}
+	$('#ajustes-max-tempo').on('change', function() {
+		localStorage.ajustesMaxTempo = $('#ajustes-max-tempo').val();
+	});
+
 
 
 	/* Mostra o panorama dos atendimentos naquele momento */
@@ -162,6 +175,7 @@ $(document).ready(function() {
 		$('#espera').html(json.Espera);
 		$('#media-espera').html(window.averageTime(json.Espera, json.Atendimentos, $('#media-espera')));
 	});
+
 
 
 	/* Inicializa o Google Maps quando o usuário clica em Mapas.
@@ -183,10 +197,12 @@ $(document).ready(function() {
 	});
 
 
+
 	/* Mostra a tela de Ver unidade quando clica no link do marcador */
 	$('#map-canvas').on('click', '.ver-unidade', function() {
 		window.showCompanyUnit($(this).attr('data-nome'), $(this).attr('data-unidade'));
 	});
+
 
 
 	$('#voltar-mapa').on('click', function() {
@@ -197,13 +213,7 @@ $(document).ready(function() {
 	/* Auto refresh JSON */
 
 	
-	/* Definir underperformance */
-	if(localStorage && localStorage.ajustesMaxTempo){
-		$('#ajustes-max-tempo').val(localStorage.ajustesMaxTempo);
-	}
-	$('#ajustes-max-tempo').on('change', function() {
-		localStorage.ajustesMaxTempo = $('#ajustes-max-tempo').val();
-	});
+
 
 
 	/* Auto complete */
@@ -217,12 +227,10 @@ $(document).ready(function() {
 			    lookup: json,
 			    minChars: 0,
 			    onSelect: function (suggestion) {
-			        console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
+					//console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
 			        window.showCompanyUnit(suggestion.value, suggestion.data);
 			    }
 			});
 		});
 	});
-	
-	$('#campo-busca').click(function(){ return false; });
 });
