@@ -239,7 +239,7 @@ $(document).ready(function() {
 				}
 				flagMap = true;
 			}
-		}, 1000);
+		}, 1500);
 	});
 
 
@@ -268,7 +268,7 @@ $(document).ready(function() {
 	$('#menu-busca').on('click', function() {
 		window.setTimeout(function() {
 			$('#campo-busca').focus();
-		}, 1000);
+		}, 1500);
 		
 		$.getJSON('json/lista.json', function(json) {
 			$('#campo-busca').autocomplete({

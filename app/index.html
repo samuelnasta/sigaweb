@@ -3,9 +3,10 @@
 <meta charset="utf-8">
 <title>SigaWeb Mobile</title>
 <meta name="description" content="">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet" type="text/css">
 <!-- build:css(.tmp) styles/main.css -->
-<link href="//fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:300" rel="stylesheet" type="text/css">
 <link href="styles/main.css" rel="stylesheet">
 <!-- endbuild -->
 </head>
@@ -22,6 +23,7 @@
 			<label>Senhas Canceladas:</label> <div id="cancelamentos"></div>
 			<label>Espera Total:</label> <div id="espera"></div>
 			<label>Tempo Médio de Espera:</label> <div id="media-espera"></div>
+			<div class="clearfix"></div>
 		</section>
 	</div>
 
@@ -36,6 +38,7 @@
 					<img src="images/loading.gif" alt="Carregando">
 				</p>
 			</div>
+			<div class="clearfix"></div>
 		</section>
 	</div>
 
@@ -46,6 +49,7 @@
 		<section>
 			<input id="campo-busca" name="busca" type="text">
 			<div id="resultados"></div>
+			<div class="clearfix"></div>
 		</section>
 	</div>
 
@@ -59,18 +63,15 @@
 			<label>Senhas Canceladas:</label> <div id="unidade-cancelamentos"></div>
 			<label>Espera Total:</label> <div id="unidade-espera"></div>
 			<label>Tempo Médio de Espera:</label> <div id="unidade-media-espera"></div>
-			<div class="clearfix"></div>
 			<hr>
-			<div class="clearfix"></div>
 			<label>Usuários:</label> <div id="unidade-usuarios"></div>
 			<label>Usuários logados:</label> <div id="unidade-logados"></div>
-			<div class="clearfix"></div>
 			<hr>
-			<div class="clearfix"></div>
 			<label>Total aguardando:</label> <div id="unidade-aguardando"></div>
 			<label>Aguardando até 15minutos:</label> <div id="unidade-aguardando-15min"></div>
 			<label>Aguardando até 30minutos:</label> <div id="unidade-aguardando-30min"></div>
 			<label>Aguardando há mais de 30minutos:</label> <div id="unidade-aguardando-60min"></div>
+			<div class="clearfix"></div>
 		</section>
 	</div>
 
@@ -79,9 +80,12 @@
 			<h1>Ajustes</h1>
 		</header>
 		<section>
-			<p><label for="ajustes-max-tempo">Tempo máximo de atendimento permitido</label><input id="ajustes-max-tempo" name="ajustes-max-tempo" type="number" value="5"> minuto(s)</p>
-			<p><label for="ajustes-auto-refresh">Intervalo de atualização dos dados</label><input id="ajustes-auto-refresh" name="ajustes-auto-refresh" type="number" value="1"> minuto(s)</p>
+			<p><label for="ajustes-max-tempo">Tempo máximo de atendimento permitido</label><br>
+			<input id="ajustes-max-tempo" name="ajustes-max-tempo" type="number" value="5"> minuto(s)</p>
+			<p><label for="ajustes-auto-refresh">Intervalo de atualização dos dados</label><br>
+			<input id="ajustes-auto-refresh" name="ajustes-auto-refresh" type="number" value="1"> minuto(s)</p>
 			<p><button id="logout">Sair da conta</button></p>
+			<div class="clearfix"></div>
 		</section>
 	</div>
 
@@ -90,14 +94,13 @@
 
 	<nav role="navigation">
 		<ul>
-			<li><a href="javascript:;" id="menu-panorama" title="Panorama"><img src="images/speedometer.png" alt=""><!-- <i class="glyphicon glyphicon-list-alt"></i> -->Panorama</a></li>
-			<li><a href="javascript:;" id="menu-mapa" title="Mapas"><img src="images/location.png" alt=""><!-- <i class="glyphicon glyphicon-map-marker"></i> -->Mapas</a></li>
-			<li><a href="javascript:;" id="menu-busca" title="Busca"><img src="images/magnifyingglass.png" alt=""><!-- <i class="glyphicon glyphicon-search"></i> -->Busca</a></li>
-			<li><a href="javascript:;" id="menu-ajustes" title="Ajustes"><img src="images/gear.png" alt=""><!-- <i class="glyphicon glyphicon-cog"></i> -->Ajustes</a></li>
+			<li><a href="javascript:;" id="menu-panorama" title="Panorama"><img src="images/speedometer.png" alt="">Panorama</a></li>
+			<li><a href="javascript:;" id="menu-mapa" title="Mapas"><img src="images/location.png" alt="">Mapas</a></li>
+			<li><a href="javascript:;" id="menu-busca" title="Busca"><img src="images/magnifyingglass.png" alt="">Busca</a></li>
+			<li><a href="javascript:;" id="menu-ajustes" title="Ajustes"><img src="images/gear.png" alt="">Ajustes</a></li>
 		</ul>
 <!-- 		<a href="#" id="logo" title="SigaWeb Mobile"></a> -->
 	</nav>
-	<div class="clearfix"></div>
 </div>
 
 
@@ -105,7 +108,6 @@
 <!-- bower:js -->
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/devbridge-autocomplete/dist/jquery.autocomplete.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5kPN48RXW7LMnkcHflvbNJbPe-haCpJs"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -118,6 +120,7 @@ e.src='//www.google-analytics.com/analytics.js';
 r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 ga('create','UA-XXXXX-X');ga('send','pageview');
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5kPN48RXW7LMnkcHflvbNJbPe-haCpJs"></script>
 
 <!-- build:js scripts/main.js -->
 <script src="scripts/main.js" type="text/javascript"></script>
