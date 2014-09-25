@@ -35,7 +35,7 @@ window.autoRefresh = function() {
 /* Média de tempo de espera. Se for maior aplica classe de underperformance */
 window.averageTime = function(time, attendance, div) {
 	ajustesMaxTempo = (localStorage.ajustesMaxTempo) ? localStorage.ajustesMaxTempo : 5;
-	div.addClass('underperforming');
+	div.removeClass('underperforming');
 	var partialTime = window.toSeconds(time) / attendance;
 	if(partialTime > ajustesMaxTempo * 60) {
 		div.addClass('underperforming');
@@ -87,7 +87,7 @@ window.loadMarkers = function() {
 			var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
 			marker = new google.maps.Marker({
-				icon: 'http://www.googlemapsmarkers.com/v1/009900/',
+				icon: 'http://www.googlemapsmarkers.com/v1/0288d1/',
                 id: id,
 				position: latLng,
 				map: map,
