@@ -232,7 +232,7 @@ $(document).ready(function() {
 			/* Centraliza o mapa onde o usuário está. Se ele não permitir esse recurso, centraliza em Belo Horizonte */
 			/* Verifica se o mapa já foi inicializado para evitar ter que carregá-lo sempre */
 			if(!flagMap){
-				if(!navigator.geolocation) {
+				if(navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(window.initializeMap);
 				} else {
 					window.initializeMap();
@@ -258,6 +258,11 @@ $(document).ready(function() {
 		$('#unidade').animate({'left': '100%'}, 300, function() { $(this).removeClass('active'); });
 		$('#campo-busca').select();
 		window.clearTimeout(timeoutAutoRefresh);
+	});
+
+	$('#button-more-auto-refresh').on('click', function() {
+		var valu = $('#ajustes-auto-refresh').val();
+		$('#ajustes-auto-refresh').val(parseInt(valu) + 1);
 	});
 
 

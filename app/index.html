@@ -19,10 +19,26 @@
 			<h1>Panorama</h1>
 		</header>
 		<section>
-			<label>Atendimentos Realizados:</label> <div id="atendimentos"></div>
-			<label>Senhas Canceladas:</label> <div id="cancelamentos"></div>
-			<label>Espera Total:</label> <div id="espera"></div>
-			<label>Tempo Médio de Espera:</label> <div id="media-espera"></div>
+			<div>
+				<img src="images/clipboard.png" alt="">
+				<strong id="atendimentos"></strong>
+				<label>Atendimentos</label>
+			</div>
+			<div>
+				<img src="images/denied.png" alt="">
+				<strong id="cancelamentos"></strong>
+				<label>Cancelamentos</label>
+			</div>
+			<div>
+				<img src="images/hourglass.png" alt="">
+				<strong id="espera"></strong>
+				<label>Espera Total</label>
+			</div>
+			<div>
+				<img src="images/hourglass.png" alt="">
+				<strong id="media-espera"></strong>
+				<label>Tempo Médio</label>
+			</div>
 			<div class="clearfix"></div>
 		</section>
 	</div>
@@ -59,14 +75,25 @@
 			<h1 id="nome-unidade">Ver unidade</h1>
 		</header>
 		<section>
-			<label>Atendimentos Realizados:</label> <div id="unidade-atendimentos"></div>
-			<label>Senhas Canceladas:</label> <div id="unidade-cancelamentos"></div>
-			<label>Espera Total:</label> <div id="unidade-espera"></div>
+			<label><img src="images/clipboard.png" alt="Atendimentos Realizados"> Atendimentos Realizados:</label>
+			<div id="unidade-atendimentos"></div>
+			<label><img src="images/denied.png" alt="Senhas Canceladas"> Senhas Canceladas:</label>
+			<div id="unidade-cancelamentos"></div>
+			<label><img src="images/hourglass.png" alt="Espera Total"> Espera Total:</label>
+			<div id="unidade-espera"></div>
 			<label>Tempo Médio de Espera:</label> <div id="unidade-media-espera"></div>
+
+			<div style="margin: 20px 0; width: 100%">
 			<hr>
-			<label>Usuários:</label> <div id="unidade-usuarios"></div>
-			<label>Usuários logados:</label> <div id="unidade-logados"></div>
+			<label><img src="images/profile.png" alt="Usuários logados"> Usuários logados:</label>
+			<div>
+				<span id="unidade-logados"></span> / <span id="unidade-usuarios"></span>
+			</div>
+<!-- 			<label>Usuários logados:</label> <div id="unidade-logados"></div> -->
 			<hr>
+			</div>
+
+
 			<label>Total aguardando:</label> <div id="unidade-aguardando"></div>
 			<label>Aguardando até 15minutos:</label> <div id="unidade-aguardando-15min"></div>
 			<label>Aguardando até 30minutos:</label> <div id="unidade-aguardando-30min"></div>
@@ -81,9 +108,9 @@
 		</header>
 		<section>
 			<p><label for="ajustes-max-tempo">Tempo máximo de atendimento permitido</label><br>
-			<input id="ajustes-max-tempo" name="ajustes-max-tempo" type="number" value="5"> minuto(s)</p>
+			<button class="button-more" id="button-more-max-tempo">+</button><input id="ajustes-max-tempo" name="ajustes-max-tempo" type="number" value="5"><button class="button-minus" id="button-minus-max-tempo">-</button> minuto(s)</p>
 			<p><label for="ajustes-auto-refresh">Intervalo de atualização dos dados</label><br>
-			<input id="ajustes-auto-refresh" name="ajustes-auto-refresh" type="number" value="1"> minuto(s)</p>
+			<button class="button-more" id="button-more-auto-refresh">+</button><input id="ajustes-auto-refresh" name="ajustes-auto-refresh" type="number" value="1"><button class="button-minus" id="button-minus-auto-refresh">-</button> minuto(s)</p>
 			<p><button id="logout">Sair da conta</button></p>
 			<div class="clearfix"></div>
 		</section>
